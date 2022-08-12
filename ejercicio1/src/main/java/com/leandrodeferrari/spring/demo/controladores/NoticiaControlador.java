@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/noticia")
+@RequestMapping("/noticias")
 public class NoticiaControlador {
     
-    @Autowired
-    private NoticiaServicio noticiaServicio;
-    
-//    @GetMapping("/crear")
-//    public String agregar(){
-//        return "noticias.html";
-//    }
+    @GetMapping("/noticias")
+    public String agregar(){
+        return "falopita 1";
+    }
     
 }
