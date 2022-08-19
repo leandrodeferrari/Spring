@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring.security" lang="es">
   <head>
     <title>Noticia</title>
     <!-- Required meta tags -->
@@ -21,7 +21,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
   </head>
   <body>
     <header class="container">
@@ -38,7 +38,7 @@
                   <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">Ingresar</a>
+                  <a class="nav-link active" href="registro_noticia.html">Ingresar</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="#">Contacto</a>
@@ -54,10 +54,10 @@
       <div class="row">
         <div class="col-12 p-5">
           <div class="card h-100 w-100" style="width: 18rem;">
-            <img src="imagenes/sevdaliza-foto.jpg" class="card-img-top" alt="...">
+            <img src="../imagenes/sevdaliza-foto.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">Titulo de la carta</h5>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet impedit accusamus cupiditate unde dolores molestiae.</p>
+              <h5 class="card-title" th:text="${titulo}">titulo</h5>
+              <p class="card-text" th:text="${cuerpo}">cuerpo</p>
             </div>
             <div class="card-footer text-center">
               <h5>Fecha de subida</h5>

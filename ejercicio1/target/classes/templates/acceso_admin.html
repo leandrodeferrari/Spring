@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Acceso</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS v5.2.0-beta1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <!--CDN Font Awesone-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+
+<body>
+  <header class="container">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><b>Egg Noticias</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Ingresar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="row mt-3">
+      <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TITULO</th>
+            <th scope="col">CUEPO</th>
+            <th scope="col">FOTO</th>
+            <th scope="col">EDITAR</th>
+            <th scope="col">ELIMINAR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#ModalModificar">
+                <i class="fa-solid fa-marker"></i>
+              </a>
+            </td>
+            <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#ModalEliminar">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#ModalModificar">
+                <i class="fa-solid fa-marker"></i>
+              </a>
+            </td>
+            <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#ModalEliminar">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3aks2323</th>
+            <td>Ojos que no ven</td>
+            <td>@fdfdsfdsfdf</td>
+            <td>Larry.jpg</td>
+            <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#ModalModificar">
+                <i class="fa-solid fa-marker"></i>
+              </a>
+            </td>
+            <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#ModalEliminar">
+                <i class="fa-solid fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="bg-warning text-light py-4">
+    <div class="container">
+      <nav class="row justify-content-center">
+        <!--Logo-->
+        <a href="#"
+          class="col-12 col-md-3 text-reset text-uppercase d-flex align-items-center justify-content-center mb-3 mb-md-0 sinSubrayado">
+          <i class="fa-solid fa-newspaper"></i>
+          <b class="ms-1">Egg</b>
+        </a>
+        <!--Primer menu-->
+        <ul class="col-5 col-md-3 list-unstyled">
+          <li class="font-weight-bold text-uppercase"><b>Recursos</b></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 1</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 2</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 3</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 4</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 5</a></li>
+        </ul>
+        <!--Segundo menu-->
+        <ul class="col-5 col-md-3 list-unstyled">
+          <li class="font-weight-bold text-uppercase"><b>Enlaces</b></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 1</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 2</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 3</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 4</a></li>
+          <li><a href="#" class="text-reset sinSubrayado">Link 5</a></li>
+        </ul>
+        <!--Redes sociales-->
+        <ul class="col-10 col-md-3 list-unstyled">
+          <li class="font-weight-bold text-uppercase text-center">
+            <b>Redes sociales</b>
+          </li>
+          <li class="d-flex justify-content-between p-1">
+            <!--Facebook-->
+            <a href="#" class="text-reset">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <!--Twitter-->
+            <a href="#" class="text-reset">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <!--Instagram-->
+            <a href="#" class="text-reset">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!--Pinterest-->
+            <a href="#" class="text-reset">
+              <i class="fa-brands fa-pinterest"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!--Modal Modificar-->
+  <div class="modal fade" id="ModalModificar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--Form-->
+          <div class="container col-10">
+            <form action="/ingresar/cargar-noticia" method="post">
+              <div class="container">
+                <h1 class="h4">
+                Modificar noticia:
+                </h1>
+                <!--ID-->
+                <div class="row">
+                  <div class="col-12">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      ID:
+                    </label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="ID..." name="id" />
+                  </div>
+              </div>
+              <!--Titulo-->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-2 mt-2">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Título:
+                    </label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Título..."
+                      name="titulo" />
+                  </div>
+                </div>
+              </div>
+              <!--Cuerpo-->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-2">
+                    <label for="exampleFormControlTextarea1" class="form-label">
+                      Cuerpo:
+                    </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Cuerpo..."
+                      name="cuerpo"></textarea>
+                  </div>
+                </div>
+              </div>
+              <!--Foto Noticia-->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-2">
+                    <label for="formFile" class="form-label">
+                      Seleccione la imagen:
+                    </label>
+                    <input class="form-control" type="file" id="formFile" name="foto" />
+                  </div>
+                </div>
+              </div>
+              <!--BOTON-->
+              <div class="d-grid gap-2 mt-2">
+                <input class="btn btn-warning mb-2" type="submit" value="Modificar">
+              </div>
+          </div>
+          </form>
+          </div>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+  </div>
+
+  <!--Modal Eliminar-->
+  <div class="modal fade" id="ModalEliminar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          <!--Form-->
+          <form action="/ingresar/cargar-noticia" method="post">
+            <div class="container">
+              <!--ID-->
+              <div class="row">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">
+                      Ingresar el ID, de la noticia a eliminar:
+                    </label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="ID..."
+                      name="id" />
+                  </div>
+                </div>
+              </div>
+              <!--BOTON-->
+              <div class="d-grid gap-2">
+                <input class="btn btn-warning mb-2" type="submit" value="Eliminar">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+    integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

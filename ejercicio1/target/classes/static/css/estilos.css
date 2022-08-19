@@ -1,5 +1,5 @@
 .header {
-  background-image: url(src/main/resources/imagenes/banner-egg.jpg);
+  background-image: url(../imagenes/banner-egg.jpg);
   height: 100%;
   width: 100%;
   background-position: center;
@@ -38,9 +38,7 @@
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 375px) {
-  
-    .vh-50 {
+  .vh-50 {
     height: 50vmax;
   }
-  
 }
