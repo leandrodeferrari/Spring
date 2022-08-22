@@ -3,14 +3,11 @@ package com.leandrodeferrari.spring.demo.servicios;
 import com.leandrodeferrari.spring.demo.entidades.Noticia;
 import com.leandrodeferrari.spring.demo.excepciones.NoticiaExcepcion;
 import com.leandrodeferrari.spring.demo.repositorios.NoticiaRepositorio;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 import javax.transaction.Transactional;
-import net.iharder.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class NoticiaServicio {
@@ -19,24 +16,25 @@ public class NoticiaServicio {
     private NoticiaRepositorio noticiaRepositorio;
 
     @Transactional
-    public Noticia crearNoticia(String titulo, String cuerpo, MultipartFile foto) {
-        System.out.println("NOUUUUUUUUUUUUUU");
-        validar(titulo, cuerpo);
+    public Noticia crearNoticia(String titulo, String cuerpo, String foto) {
+        
+        validar(titulo, cuerpo, foto);
 
         Noticia noticia = new Noticia();
 
         noticia.setTitulo(titulo);
         noticia.setCuerpo(cuerpo);
-        if (!foto.isEmpty()) {
-            System.out.println("BUENAAAAAAA");
-            try {
-                noticia.setFoto(Base64.encodeBytes(foto.getBytes()));
-            } catch (IOException ex) {
-                ex.getMessage();
-            }
-        }
-
+//        if (!foto.isEmpty()) {
+//            System.out.println("BUENAAAAAAA");
+//            try {
+//                noticia.setFoto(Base64.encodeBytes(foto.getBytes()));
+//            } catch (IOException ex) {
+//                ex.getMessage();
+//            }
+//        } else {
+        noticia.setFoto(foto);
         noticia.setFechaDeSubida(LocalDateTime.now());
+        noticia.setAlta(true);
 
         noticiaRepositorio.save(noticia);
 
@@ -45,10 +43,10 @@ public class NoticiaServicio {
     }
 
     @Transactional
-    public boolean modificarNoticia(String id, String titulo, String cuerpo, MultipartFile foto) {
+    public boolean modificarNoticia(String id, String titulo, String cuerpo, String foto) {
 
         validarId(id);
-        validar(titulo, cuerpo);
+        validar(titulo, cuerpo, foto);
 
         boolean esModificado = false;
         Optional<Noticia> respuestaNoticia = noticiaRepositorio.findById(id);
@@ -57,11 +55,12 @@ public class NoticiaServicio {
             Noticia noticia = respuestaNoticia.get();
             noticia.setTitulo(titulo);
             noticia.setCuerpo(cuerpo);
-            try {
-                noticia.setFoto(Base64.encodeBytes(foto.getBytes()));
-            } catch (IOException ex) {
-                ex.getMessage();
-            }
+//            try {
+//                noticia.setFoto(Base64.encodeBytes(foto.getBytes()));
+//            } catch (IOException ex) {
+//                ex.getMessage();
+//            }
+            noticia.setFoto(foto);
             noticiaRepositorio.save(noticia);
             esModificado = true;
         }
@@ -79,9 +78,17 @@ public class NoticiaServicio {
         Optional<Noticia> respuestaNoticia = noticiaRepositorio.findById(id);
 
         if (respuestaNoticia.isPresent()) {
+            
             Noticia noticia = respuestaNoticia.get();
-            noticiaRepositorio.delete(noticia);
-            esBorrado = true;
+            
+            if(noticia.isAlta()){
+                
+                noticia.setAlta(false);
+                noticiaRepositorio.save(noticia);
+                esBorrado = true;
+                
+            }
+            
         }
 
         return esBorrado;
@@ -111,6 +118,14 @@ public class NoticiaServicio {
 
     }
 
+    public List<Noticia> listarNoticias(){
+        
+        List<Noticia> noticias = noticiaRepositorio.findAll();
+        
+        return noticias;
+        
+    }
+    
     private void validarId(String id) {
 
         if (id == null) {
@@ -122,11 +137,12 @@ public class NoticiaServicio {
 
     }
 
-    private void validar(String titulo, String cuerpo) {
+    private void validar(String titulo, String cuerpo, String foto) {
 
         if (titulo == null) {
             throw new NoticiaExcepcion("Ha ingresado un valor nulo en su título, de la noticia");
         }
+        
         if (titulo.isEmpty()) {
             throw new NoticiaExcepcion("Ha ingresado el título vacío");
         }
@@ -134,10 +150,19 @@ public class NoticiaServicio {
         if (cuerpo == null) {
             throw new NoticiaExcepcion("Ha ingresado un valor nulo en su cuerpo, de la noticia");
         }
+        
         if (cuerpo.isEmpty()) {
             throw new NoticiaExcepcion("Ha ingresado el cuerpo de la noticia, vacía");
         }
 
+        if (foto == null) {
+            throw new NoticiaExcepcion("Ha ingresado un valor nulo en su foto, de la noticia");
+        }
+        
+        if (foto.isEmpty()) {
+            throw new NoticiaExcepcion("Ha ingresado la foto de la noticia, vacía");
+        }
+        
     }
 
 }

@@ -21,7 +21,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="../css/registros.css" />
   </head>
   <body>
     <header class="container">
@@ -64,9 +64,9 @@
     </header>
 
     <!--Form-->
-    <form action="/ingresar/cargar-noticia" method="post">
+    <form action="/ingresar/ingresar-usuario" method="post">
       <div class="container">
-        <h1>
+          <h1 class="h3">
           Ingresar:
         </h1>
         <!--Email-->
@@ -74,7 +74,7 @@
           <div class="col-12">
             <div class="mb-3">
               <label for="emailUsuario" class="form-label">Email:</label>
-              <input type="email" class="form-control" id="emailUsuario" placeholder="nombre@ejemplo.com">
+              <input type="email" class="form-control" id="emailUsuario" name="email" placeholder="nombre@ejemplo.com">
             </div>
           </div>
         </div>
@@ -83,7 +83,7 @@
           <div class="col-12">
               <div class="mb-3">
                     <label for="contraseniaUsuario" class="visually-hidden">Contraseña:</label>
-                    <input type="password" class="form-control" id="contraseniaUsuario" placeholder="Contraseña">
+                    <input type="password" class="form-control" id="contraseniaUsuario" name="contrasenia" placeholder="Contraseña">
                 </div>
           </div>
         </div>
@@ -94,6 +94,20 @@
       </div>
     </form>
 
+    <div th:if="${exito != null}" class="row justify-content-center">
+    <div class="col-8 alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-check"></i> <span th:text="${exito}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+    
+    <div th:if="${error != null}" class="row justify-content-center">
+    <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="fa-solid fa-circle-xmark"></i> <span th:text="${error}"></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+    
     <footer class="bg-warning text-light py-4">
       <div class="container">
         <nav class="row justify-content-center">

@@ -19,6 +19,7 @@ public class Noticia implements Serializable {
     private String foto;
     @Column(name = "fecha_de_subida")
     private LocalDateTime fechaDeSubida;
+    private boolean alta;
 
     public Noticia() {
     }
@@ -57,6 +58,14 @@ public class Noticia implements Serializable {
 
     public void setFechaDeSubida(LocalDateTime fechaDeSubida) {
         this.fechaDeSubida = fechaDeSubida;
+    }
+
+    public boolean isAlta() {
+        return alta;
+    }
+
+    public void setAlta(boolean alta) {
+        this.alta = alta;
     }
     
 }
