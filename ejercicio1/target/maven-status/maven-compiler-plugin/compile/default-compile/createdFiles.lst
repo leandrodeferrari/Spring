@@ -4,5 +4,6 @@ com\leandrodeferrari\spring\demo\servicios\NoticiaServicio.class
 com\leandrodeferrari\spring\demo\controladores\NoticiaControlador.class
 com\leandrodeferrari\spring\demo\repositorios\NoticiaRepositorio.class
 com\leandrodeferrari\spring\demo\excepciones\NoticiaExcepcion.class
+com\leandrodeferrari\spring\demo\controladores\PanelAdminControlador.class
 com\leandrodeferrari\spring\demo\controladores\PortalControlador.class
 com\leandrodeferrari\spring\demo\ServletInitializer.class

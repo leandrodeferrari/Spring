@@ -11,8 +11,11 @@ public interface NoticiaRepositorio extends JpaRepository<Noticia, String> {
 
     @Query("SELECT e FROM Noticia e WHERE e.titulo = :titulo")
     public Noticia buscarPorTitulo(@Param("titulo") String titulo);
-
-    @Query(value = "SELECT * FROM noticias ORDER BY fecha_de_subida DESC", nativeQuery = true)
+    
+    @Query(value = "SELECT * FROM noticias WHERE alta = 1 ORDER BY fecha_de_subida DESC", nativeQuery = true)
     public List<Noticia> buscarNoticiasOrdenadasDescendentementePorFecha();
 
+    @Query(value= "SELECT * FROM noticias WHERE alta = 1", nativeQuery = true)
+    public List<Noticia> buscarNoticiasDadasDeAlta();
+    
 }

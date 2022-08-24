@@ -6,9 +6,7 @@ import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/noticias")
@@ -24,7 +22,7 @@ public class NoticiaControlador {
     
     @GetMapping("/{id}")
     public String mostrarNoticia(@PathVariable("id") String id, ModelMap modelo){
-        
+        // Falta mostrar foto en el html
         try {
             Noticia noticia = noticiaServicio.encontrarNoticia(id);
             modelo.addAttribute("titulo", noticia.getTitulo());

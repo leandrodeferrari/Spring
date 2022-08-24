@@ -118,9 +118,9 @@ public class NoticiaServicio {
 
     }
 
-    public List<Noticia> listarNoticias(){
+    public List<Noticia> listarNoticiasDadasDeAlta(){
         
-        List<Noticia> noticias = noticiaRepositorio.findAll();
+        List<Noticia> noticias = noticiaRepositorio.buscarNoticiasDadasDeAlta();
         
         return noticias;
         
@@ -129,7 +129,7 @@ public class NoticiaServicio {
     private void validarId(String id) {
 
         if (id == null) {
-            throw new NoticiaExcepcion("Ha ingresado un valor nulo en su ID");
+            throw new NoticiaExcepcion("Ha ingresado un valor nulo en el ID");
         }
         if (id.isEmpty()) {
             throw new NoticiaExcepcion("Ha ingresado el ID vacío");
@@ -140,7 +140,7 @@ public class NoticiaServicio {
     private void validar(String titulo, String cuerpo, String foto) {
 
         if (titulo == null) {
-            throw new NoticiaExcepcion("Ha ingresado un valor nulo en su título, de la noticia");
+            throw new NoticiaExcepcion("Ha ingresado un valor nulo en el título de la noticia");
         }
         
         if (titulo.isEmpty()) {
@@ -148,19 +148,19 @@ public class NoticiaServicio {
         }
 
         if (cuerpo == null) {
-            throw new NoticiaExcepcion("Ha ingresado un valor nulo en su cuerpo, de la noticia");
+            throw new NoticiaExcepcion("Ha ingresado un valor nulo en el cuerpo de la noticia");
         }
         
         if (cuerpo.isEmpty()) {
-            throw new NoticiaExcepcion("Ha ingresado el cuerpo de la noticia, vacía");
+            throw new NoticiaExcepcion("Ha ingresado el cuerpo vacío");
         }
 
         if (foto == null) {
-            throw new NoticiaExcepcion("Ha ingresado un valor nulo en su foto, de la noticia");
+            throw new NoticiaExcepcion("Ha ingresado un valor nulo en la foto de la noticia");
         }
         
         if (foto.isEmpty()) {
-            throw new NoticiaExcepcion("Ha ingresado la foto de la noticia, vacía");
+            throw new NoticiaExcepcion("Ha ingresado la foto vacía");
         }
         
     }
