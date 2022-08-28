@@ -64,17 +64,35 @@
         </header>
 
         <!--Form-->
-        <form action="/ingresar/ingresar-usuario" method="post">
+        <form action="/ingresar/crear-usuario" method="post">
             <div class="container">
                 <h1 class="h3">
                     Ingresar:
                 </h1>
+                <!--Nombre Usuario-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="nombreDeUsuario" class="form-label">
+                                Nombre de usuario:
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nombreDeUsuario"
+                                placeholder="Nombre de usuario..."
+                                name="nombreDeUsuario"
+                                th:value=${nombreDeUsuario}
+                                />
+                        </div>
+                    </div>
+                </div>
                 <!--Email-->
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="emailUsuario" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="emailUsuario" name="email" placeholder="nombre@ejemplo.com">
+                            <input type="email" class="form-control" id="emailUsuario" name="email" placeholder="nombre@ejemplo.com" th:value=${email}>
                         </div>
                     </div>
                 </div>
@@ -82,8 +100,17 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
-                            <label for="contraseniaUsuario" class="visually-hidden">Contraseña:</label>
-                            <input type="password" class="form-control" id="contraseniaUsuario" name="contrasenia" placeholder="Contraseña">
+                            <label for="contraseniaUsuario1" class="visually-hidden">Contraseña:</label>
+                            <input type="password" class="form-control" id="contraseniaUsuario1" name="contrasenia1" placeholder="Mínimo 8 carácteres">
+                        </div>
+                    </div>
+                </div>
+                <!--Contrasenia Validar-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="contraseniaUsuario2" class="visually-hidden">Repetir contraseña:</label>
+                            <input type="password" class="form-control" id="contraseniaUsuario2" name="contrasenia2" placeholder="Ingrese, nuevamente, su contraseña">
                         </div>
                     </div>
                 </div>

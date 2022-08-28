@@ -2,8 +2,10 @@ package com.leandrodeferrari.spring.demo.controladores;
 
 import com.leandrodeferrari.spring.demo.entidades.Noticia;
 import com.leandrodeferrari.spring.demo.excepciones.NoticiaExcepcion;
+import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
+import com.leandrodeferrari.spring.demo.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +17,9 @@ public class PanelAdminControlador {
 
     @Autowired
     private NoticiaServicio noticiaServicio;
+    
+    @Autowired
+    private UsuarioServicio usuarioServicio;
 
     @GetMapping("/")
     public String cargarRegistroUsuario() {
@@ -36,6 +41,27 @@ public class PanelAdminControlador {
         return "registro_noticia.html";
     }
 
+    @PostMapping("/crear-usuario")
+    public String cargarUsuario(@RequestParam("nombreDeUsuario") String nombreDeUsuario,@RequestParam("email") String email,@RequestParam("contrasenia1") String contrasenia1,@RequestParam("contrasenia2") String contrasenia2, ModelMap modelo){
+        
+        try {
+            
+            usuarioServicio.crearUsuario(nombreDeUsuario, contrasenia1, contrasenia2, email);
+            
+            modelo.put("exito", "Te has registrado correctamente");
+            return "registro_usuario.html";
+            
+        } catch (UsuarioExcepcion ex) {
+            
+            modelo.put("error", ex.getMessage());
+            modelo.put("nombreDeUsuario", nombreDeUsuario);
+            modelo.put("email", email);
+            return "registro_usuario.html";
+            
+        }
+        
+    }
+    
     @PostMapping("/cargar-noticia")
     public String cargarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
 
@@ -49,6 +75,10 @@ public class PanelAdminControlador {
         } catch (NoticiaExcepcion ex) {
 
             modelo.put("error", ex.getMessage());
+            modelo.put("titulo", titulo);
+            modelo.put("cuerpo", cuerpo);
+            modelo.put("foto", foto);
+            
             return "registro_noticia.html";
 
         }
