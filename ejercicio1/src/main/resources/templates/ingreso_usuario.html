@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring.security" lang="es">
     <head>
-        <title>Noticias</title>
+        <title>Ingresar</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -64,61 +64,32 @@
         </header>
 
         <!--Form-->
-        <form action="/registrar/cargar-noticia" method="post" class="mb-2">
+        <form th:action="@{/logincheck}" method="post">
             <div class="container">
-                <h1>
-                    Subir noticia:
+                <h1 class="h3">
+                    Registro:
                 </h1>
-                <!--Titulo-->
+                <!--Email-->
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
-                            <label for="titulo" class="form-label">
-                                Título de la noticia:
-                            </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="titulo"
-                                placeholder="Título..."
-                                name="titulo"
-                                th:value=${titulo}
-                                />
+                            <label for="emailUsuario" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="emailUsuario" name="email" placeholder="nombre@ejemplo.com" th:value=${email}>
                         </div>
                     </div>
                 </div>
-                <!--Cuerpo-->
+                <!--Contrasenia-->
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
-                            <label for="cuerpo" class="form-label">
-                                Cuerpo de la noticia:
-                            </label>
-                            <textarea
-                                class="form-control"
-                                id="cuerpo"
-                                rows="3"
-                                placeholder="Cuerpo..."
-                                name="cuerpo"
-                                th:text="${cuerpo}"
-                                ></textarea>
-                        </div>
-                    </div>
-                </div>
-                <!--Foto Noticia-->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">
-                                Seleccione la imagen de su noticia:
-                            </label>
-                            <input class="form-control" type="file" id="formFile" name="foto"/>
+                            <label for="contraseniaUsuario" class="form-label">Contraseña:</label>
+                            <input type="password" class="form-control" id="contraseniaUsuario" name="contrasenia" placeholder="Mínimo 8 carácteres" th:value=${contrasenia}>
                         </div>
                     </div>
                 </div>
                 <!--BOTON-->
                 <div class="d-grid gap-2">
-                    <input class="btn btn-warning mb-2" type="submit" value="Cargar noticia">
+                    <input class="btn btn-warning mb-2" type="submit" value="Ingresar">
                 </div>
             </div>
         </form>
@@ -142,7 +113,7 @@
                 <nav class="row justify-content-center">
                     <!--Logo-->
                     <a
-                        href="/"
+                        href="#"
                         class="col-12 col-md-3 text-reset text-uppercase d-flex align-items-center justify-content-center mb-3 mb-md-0 sinSubrayado"
                         >
                         <i class="fa-solid fa-newspaper"></i>
@@ -173,19 +144,19 @@
                         </li>
                         <li class="d-flex justify-content-between p-1">
                             <!--Facebook-->
-                            <a href="https://www.facebook.com" class="text-reset" target="_blank">
+                            <a href="https://www.facebook.com" class="text-reset">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
                             <!--Twitter-->
-                            <a href="https://www.twitter.com" class="text-reset" target="_blank">
+                            <a href="https://www.twitter.com" class="text-reset">
                                 <i class="fa-brands fa-twitter"></i>
                             </a>
                             <!--Instagram-->
-                            <a href="https://www.instagram.com" class="text-reset" target="_blank">
+                            <a href="https://www.instagram.com" class="text-reset">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
                             <!--Pinterest-->
-                            <a href="https://www.pinterest.com" class="text-reset"  target="_blank">
+                            <a href="https://www.pinterest.com" class="text-reset">
                                 <i class="fa-brands fa-pinterest"></i>
                             </a>
                         </li>

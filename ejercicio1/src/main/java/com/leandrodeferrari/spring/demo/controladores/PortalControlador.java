@@ -22,4 +22,9 @@ public class PortalControlador {
     return "index.html";
     }
     
+//    @GetMapping("/")
+//    public String cargarRegistroUsuario() {
+//        return "registro_usuario.html";
+//    }
+    
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring.security" lang="es">
     <head>
-        <title>Ingresar</title>
+        <title>Registrarse</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -64,10 +64,10 @@
         </header>
 
         <!--Form-->
-        <form action="/ingresar/crear-usuario" method="post">
+        <form action="/registrar/crear-usuario" method="post">
             <div class="container">
                 <h1 class="h3">
-                    Ingresar:
+                    Registro:
                 </h1>
                 <!--Nombre Usuario-->
                 <div class="row">
@@ -100,7 +100,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
-                            <label for="contraseniaUsuario1" class="visually-hidden">Contraseña:</label>
+                            <label for="contraseniaUsuario1" class="form-label">Contraseña:</label>
                             <input type="password" class="form-control" id="contraseniaUsuario1" name="contrasenia1" placeholder="Mínimo 8 carácteres">
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="mb-3">
-                            <label for="contraseniaUsuario2" class="visually-hidden">Repetir contraseña:</label>
+                            <label for="contraseniaUsuario2" class="form-label">Repetir contraseña:</label>
                             <input type="password" class="form-control" id="contraseniaUsuario2" name="contrasenia2" placeholder="Ingrese, nuevamente, su contraseña">
                         </div>
                     </div>

@@ -1,6 +1,5 @@
 package com.leandrodeferrari.spring.demo.entidades;
 
-import com.leandrodeferrari.spring.demo.enumeraciones.Rol;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.*;

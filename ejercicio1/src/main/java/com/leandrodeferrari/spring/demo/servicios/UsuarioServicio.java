@@ -5,13 +5,13 @@ import com.leandrodeferrari.spring.demo.enumeraciones.Rol;
 import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import com.leandrodeferrari.spring.demo.repositorios.UsuarioRepositorio;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -29,7 +29,8 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = new Usuario();
 
         usuario.setNombreDeUsuario(nombreDeUsuario);
-        usuario.setContrasenia(contrasenia1);
+        usuario.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia1));
+//        usuario.setContrasenia(contrasenia1);
         usuario.setEmail(email);
         usuario.setFechaDeAlta(LocalDate.now());
         usuario.setRol(Rol.USUARIO.getNombreRol());
@@ -62,13 +63,15 @@ public class UsuarioServicio implements UserDetailsService {
 //
 //            HttpSession sesion = atributo.getRequest().getSession(true);
 //
-//            sesion.setAttribute("Usuario", usuario);
+//            sesion.setAttribute("usuariosession", usuario);
 
             return new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
 
+        } else {
+            
+            throw new UsernameNotFoundException("Error al cargar usuario");
+            
         }
-
-        return null;
 
     }
 
@@ -119,5 +122,55 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
+
+//    public void ingresarUsuario(String contrasenia, String email) {
+//        
+//        validarUsuario(contrasenia, email);
+//        
+//        Usuario usuario = usuarioRepositorio.buscarPorEmail(email);
+//        
+//        if(usuario != null){
+//            
+//            if(contrasenia.equals(usuario.getContrasenia())){
+//                
+//                System.out.println("BIENVENIDO");
+//                
+//            } else {
+//                
+//                throw new UsuarioExcepcion("Contraseña incorrecta");
+//                
+//            }
+//            
+//        } else {
+//            
+//            throw new UsuarioExcepcion("Email incorrecto");
+//            
+//        }
+//        
+//    }
+
+//    private void validarUsuario(String contrasenia, String email) {
+//        
+//        if (contrasenia == null) {
+//            throw new UsuarioExcepcion("Ha ingresado un valor nulo en la contraseña del usuario");
+//        }
+//
+//        if (contrasenia.isEmpty()) {
+//            throw new UsuarioExcepcion("Ha ingresado un valor vacío en la contraseña del usuario");
+//        }
+//
+//        if (contrasenia.length() <= 7) {
+//            throw new UsuarioExcepcion("Ha ingresado una contraseña con menos de 8 caracteres");
+//        }
+//        
+//        if(email == null){
+//            throw new UsuarioExcepcion("Ha ingresado un email nulo");
+//        }
+//        
+//        if(email.isEmpty()){
+//            throw new UsuarioExcepcion("Ha ingresado un email vacío");
+//        }
+//        
+//    }
 
 }
