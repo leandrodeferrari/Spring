@@ -41,6 +41,9 @@
                                     <a class="nav-link active" href="/ingresar/">Ingresar</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link active" href="/registrar/">Registrarse</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link active" href="#footer">Contacto</a>
                                 </li>
                             </ul>
@@ -49,6 +52,13 @@
                 </nav>
             </div>
         </header>
+
+        <div th:if="${errorCargarNoticia != null}" class="row justify-content-center">
+            <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-circle-xmark"></i> <span th:text="${errorCargarNoticia}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
 
         <section class="container">
             <div class="row">
@@ -66,13 +76,6 @@
                 </div>
             </div>
         </section>
-
-        <div th:if="${errorCargarNoticia != null}" class="row justify-content-center">
-            <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-circle-xmark"></i> <span th:text="${errorCargarNoticia}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
 
         <footer class="bg-warning text-light py-4" id="footer">
             <div class="container">

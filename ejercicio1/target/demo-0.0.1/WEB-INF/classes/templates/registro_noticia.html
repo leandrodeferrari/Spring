@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/extras/spring.security" lang="es">
     <head>
-        <title>Noticias</title>
+        <title>Cargar noticia</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -28,7 +28,7 @@
             <div class="row">
                 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#"><b>Egg Noticias</b></a>
+                        <a class="navbar-brand" href="/"><b>Egg Noticias</b></a>
                         <button
                             class="navbar-toggler"
                             type="button"
@@ -51,9 +51,6 @@
                                     >
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="/ingresar/">Ingresar</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link active" href="#footer">Contacto</a>
                                 </li>
                             </ul>
@@ -63,8 +60,22 @@
             </div>
         </header>
 
+        <div th:if="${exito != null}" class="row justify-content-center">
+            <div class="col-8 alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-circle-check"></i> <span th:text="${exito}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div th:if="${error != null}" class="row justify-content-center">
+            <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-circle-xmark"></i> <span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
         <!--Form-->
-        <form action="/registrar/cargar-noticia" method="post" class="mb-2">
+        <form action="/admin/guardar-noticia" method="post" class="mb-2">
             <div class="container">
                 <h1>
                     Subir noticia:
@@ -122,20 +133,6 @@
                 </div>
             </div>
         </form>
-
-        <div th:if="${exito != null}" class="row justify-content-center">
-            <div class="col-8 alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-circle-check"></i> <span th:text="${exito}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-
-        <div th:if="${error != null}" class="row justify-content-center">
-            <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-circle-xmark"></i> <span th:text="${error}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
 
         <footer class="bg-warning text-light py-4" id="footer">
             <div class="container">

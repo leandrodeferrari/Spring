@@ -6,15 +6,15 @@ import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import com.leandrodeferrari.spring.demo.repositorios.UsuarioRepositorio;
 import java.time.LocalDate;
 import java.util.*;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+//import org.springframework.web.context.request.RequestContextHolder;
+//import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class UsuarioServicio implements UserDetailsService {
@@ -30,18 +30,33 @@ public class UsuarioServicio implements UserDetailsService {
 
         usuario.setNombreDeUsuario(nombreDeUsuario);
         usuario.setContrasenia(new BCryptPasswordEncoder().encode(contrasenia1));
-//        usuario.setContrasenia(contrasenia1);
         usuario.setEmail(email);
         usuario.setFechaDeAlta(LocalDate.now());
-        usuario.setRol(Rol.USUARIO.getNombreRol());
-
+        
+        if(usuario.getNombreDeUsuario().contains("admin")){
+            
+            usuario.setRol(Rol.ADMIN.getNombre());
+            
+        } else if(usuario.getNombreDeUsuario().contains("periodista")){
+            
+          usuario.setRol(Rol.PERIODISTA.getNombre());
+            
+        } else {
+            
+        usuario.setRol(Rol.USUARIO.getNombre());
+        
+        }
+        
         try {
             
             usuarioRepositorio.save(usuario);
+            
             return true;
 
         } catch (UsuarioExcepcion ex) {
-            throw new UsuarioExcepcion("Error al registrarse");
+            
+            throw new UsuarioExcepcion("Error al registrar el usuario");
+            
         }
 
     }
@@ -50,7 +65,9 @@ public class UsuarioServicio implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         Usuario usuario = usuarioRepositorio.buscarPorEmail(email);
-
+        
+        // Buscar info de los metodos findByAtributo, de Spring Data
+        
         if (usuario != null) {
 
             List<GrantedAuthority> permisos = new ArrayList<>();
@@ -122,55 +139,5 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-
-//    public void ingresarUsuario(String contrasenia, String email) {
-//        
-//        validarUsuario(contrasenia, email);
-//        
-//        Usuario usuario = usuarioRepositorio.buscarPorEmail(email);
-//        
-//        if(usuario != null){
-//            
-//            if(contrasenia.equals(usuario.getContrasenia())){
-//                
-//                System.out.println("BIENVENIDO");
-//                
-//            } else {
-//                
-//                throw new UsuarioExcepcion("Contraseña incorrecta");
-//                
-//            }
-//            
-//        } else {
-//            
-//            throw new UsuarioExcepcion("Email incorrecto");
-//            
-//        }
-//        
-//    }
-
-//    private void validarUsuario(String contrasenia, String email) {
-//        
-//        if (contrasenia == null) {
-//            throw new UsuarioExcepcion("Ha ingresado un valor nulo en la contraseña del usuario");
-//        }
-//
-//        if (contrasenia.isEmpty()) {
-//            throw new UsuarioExcepcion("Ha ingresado un valor vacío en la contraseña del usuario");
-//        }
-//
-//        if (contrasenia.length() <= 7) {
-//            throw new UsuarioExcepcion("Ha ingresado una contraseña con menos de 8 caracteres");
-//        }
-//        
-//        if(email == null){
-//            throw new UsuarioExcepcion("Ha ingresado un email nulo");
-//        }
-//        
-//        if(email.isEmpty()){
-//            throw new UsuarioExcepcion("Ha ingresado un email vacío");
-//        }
-//        
-//    }
 
 }

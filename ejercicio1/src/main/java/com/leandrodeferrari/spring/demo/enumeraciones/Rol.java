@@ -4,14 +4,14 @@ public enum Rol {
     
     USUARIO("Usuario"), ADMIN("Administrador"), PERIODISTA("Periodista");
     
-    private final String nombreRol;
+    private final String nombre;
 
-    private Rol(String nombreRol) {
-        this.nombreRol = nombreRol;
+    private Rol(String nombre) {
+        this.nombre = nombre;
     }
     
-    public String getNombreRol() {
-        return nombreRol;
+    public String getNombre() {
+        return nombre;
     }
     
 }

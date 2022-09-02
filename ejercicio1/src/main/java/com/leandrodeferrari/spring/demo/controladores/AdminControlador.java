@@ -12,8 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/registrar")
-public class PanelAdminControlador {
+@RequestMapping("/admin")
+public class AdminControlador {
 
     @Autowired
     private NoticiaServicio noticiaServicio;
@@ -21,12 +21,12 @@ public class PanelAdminControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    @GetMapping("/")
-    public String cargarRegistroUsuario() {
-        return "registro_usuario.html";
-    }
+//    @GetMapping("/")
+//    public String cargarRegistroUsuario() {
+//        return "registro_usuario.html";
+//    }
 
-    @GetMapping("/admin")
+    @GetMapping("/acceso")
     public String cargarPaginaDeAdmin(ModelMap modelo) {
 
         List<Noticia> noticias = noticiaServicio.listarNoticiasDadasDeAlta();
@@ -36,34 +36,34 @@ public class PanelAdminControlador {
         return "acceso_admin.html";
     }
 
-    @GetMapping("/admin/crear")
+    @GetMapping("/noticias")
     public String cargaPaginaDeCrearNoticia() {
         return "registro_noticia.html";
     }
-
-    @PostMapping("/crear-usuario")
-    public String cargarUsuario(@RequestParam("nombreDeUsuario") String nombreDeUsuario,@RequestParam("email") String email,@RequestParam("contrasenia1") String contrasenia1,@RequestParam("contrasenia2") String contrasenia2, ModelMap modelo){
-        
-        try {
-            
-            usuarioServicio.crearUsuario(nombreDeUsuario, contrasenia1, contrasenia2, email);
-            
-            modelo.put("exito", "Te has registrado correctamente");
-            return "registro_usuario.html";
-            
-        } catch (UsuarioExcepcion ex) {
-            
-            modelo.put("error", ex.getMessage());
-            modelo.put("nombreDeUsuario", nombreDeUsuario);
-            modelo.put("email", email);
-            return "registro_usuario.html";
-            
-        }
-        
-    }
+//
+//    @PostMapping("/crear-usuario")
+//    public String cargarUsuario(@RequestParam("nombreDeUsuario") String nombreDeUsuario,@RequestParam("email") String email,@RequestParam("contrasenia1") String contrasenia1,@RequestParam("contrasenia2") String contrasenia2, ModelMap modelo){
+//        
+//        try {
+//            
+//            usuarioServicio.crearUsuario(nombreDeUsuario, contrasenia1, contrasenia2, email);
+//            
+//            modelo.put("exito", "Te has registrado correctamente");
+//            return "registro_usuario.html";
+//            
+//        } catch (UsuarioExcepcion ex) {
+//            
+//            modelo.put("error", ex.getMessage());
+//            modelo.put("nombreDeUsuario", nombreDeUsuario);
+//            modelo.put("email", email);
+//            return "registro_usuario.html";
+//            
+//        }
+//        
+//    }
     
-    @PostMapping("/cargar-noticia")
-    public String cargarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
+    @PostMapping("/guardar-noticia")
+    public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
 
         try {
 

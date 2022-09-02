@@ -42,7 +42,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-//                .antMatchers("/registrar/*").hasRole(Rol.ADMIN.getNombreRol())
+//                .antMatchers("/registrar/*").hasRole(Rol.ADMIN.getNombre())
                 .antMatchers("/css/*","/js/*","/imagenes/*","/**").permitAll()
             .and().formLogin()
                 .loginPage("/ingresar/")

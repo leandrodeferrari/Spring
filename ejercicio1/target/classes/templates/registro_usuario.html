@@ -24,11 +24,11 @@
         <link rel="stylesheet" href="../css/registros.css" />
     </head>
     <body>
-        <header class="container">
+        <header class="container mb-3">
             <div class="row">
                 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#"><b>Egg Noticias</b></a>
+                        <a class="navbar-brand" href="/"><b>Egg Noticias</b></a>
                         <button
                             class="navbar-toggler"
                             type="button"
@@ -63,11 +63,25 @@
             </div>
         </header>
 
+        <div th:if="${exito != null}" class="row justify-content-center">
+            <div class="col-8 alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-circle-check"></i> <span th:text="${exito}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div th:if="${error != null}" class="row justify-content-center">
+            <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fa-solid fa-circle-xmark"></i> <span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        
         <!--Form-->
-        <form action="/registrar/crear-usuario" method="post">
+        <form action="/registrar/registrar-usuario" method="post">
             <div class="container">
                 <h1 class="h3">
-                    Registro:
+                    Ingrese sus datos, para registrarse:
                 </h1>
                 <!--Nombre Usuario-->
                 <div class="row">
@@ -121,26 +135,12 @@
             </div>
         </form>
 
-        <div th:if="${exito != null}" class="row justify-content-center">
-            <div class="col-8 alert alert-success alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-circle-check"></i> <span th:text="${exito}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-
-        <div th:if="${error != null}" class="row justify-content-center">
-            <div class="col-8 alert alert-danger alert-dismissible fade show" role="alert">
-                <i class="fa-solid fa-circle-xmark"></i> <span th:text="${error}"></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        </div>
-
         <footer class="bg-warning text-light py-4" id="footer">
             <div class="container">
                 <nav class="row justify-content-center">
                     <!--Logo-->
                     <a
-                        href="#"
+                        href="/"
                         class="col-12 col-md-3 text-reset text-uppercase d-flex align-items-center justify-content-center mb-3 mb-md-0 sinSubrayado"
                         >
                         <i class="fa-solid fa-newspaper"></i>
@@ -206,4 +206,3 @@
         ></script>
     </body>
 </html>
-
