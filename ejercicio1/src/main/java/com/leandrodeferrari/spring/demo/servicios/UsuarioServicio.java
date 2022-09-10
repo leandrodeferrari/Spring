@@ -6,15 +6,15 @@ import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import com.leandrodeferrari.spring.demo.repositorios.UsuarioRepositorio;
 import java.time.LocalDate;
 import java.util.*;
-//import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-//import org.springframework.web.context.request.RequestContextHolder;
-//import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class UsuarioServicio implements UserDetailsService {
@@ -64,9 +64,7 @@ public class UsuarioServicio implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Usuario usuario = usuarioRepositorio.buscarPorEmail(email);
-        
-        // Buscar info de los metodos findByAtributo, de Spring Data
+        Usuario usuario = usuarioRepositorio.findByEmail(email);
         
         if (usuario != null) {
 
@@ -76,11 +74,11 @@ public class UsuarioServicio implements UserDetailsService {
 
             permisos.add(permiso);
 
-//            ServletRequestAttributes atributo = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-//
-//            HttpSession sesion = atributo.getRequest().getSession(true);
-//
-//            sesion.setAttribute("usuariosession", usuario);
+            ServletRequestAttributes atributo = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+            HttpSession sesion = atributo.getRequest().getSession(true);
+
+            sesion.setAttribute("UsuarioSesion", usuario);
 
             return new User(usuario.getEmail(), usuario.getContrasenia(), permisos);
 

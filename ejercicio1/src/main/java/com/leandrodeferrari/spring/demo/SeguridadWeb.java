@@ -42,10 +42,10 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-//                .antMatchers("/registrar/*").hasRole(Rol.ADMIN.getNombre())
+              .antMatchers("/admin/**").hasRole(Rol.ADMIN.getNombre())
                 .antMatchers("/css/*","/js/*","/imagenes/*","/**").permitAll()
             .and().formLogin()
-                .loginPage("/ingresar/")
+                .loginPage("/ingresar")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("contrasenia")

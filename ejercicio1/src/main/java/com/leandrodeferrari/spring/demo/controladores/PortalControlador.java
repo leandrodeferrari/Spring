@@ -1,8 +1,11 @@
 package com.leandrodeferrari.spring.demo.controladores;
 
 import com.leandrodeferrari.spring.demo.entidades.Noticia;
+import com.leandrodeferrari.spring.demo.entidades.Usuario;
+//import com.leandrodeferrari.spring.demo.enumeraciones.Rol;
 import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -39,9 +42,17 @@ public class PortalControlador {
 
     }
 
-//    @PreAuthorize("hasAnyRole('ROLE_Administrador')")
+    @PreAuthorize("hasAnyRole('ROLE_Administrador')")
     @GetMapping("/ingresar/inicio")
-    public String inicio(ModelMap modelo) {
+    public String inicio(ModelMap modelo, HttpSession sesion) {
+        
+        Usuario usuarioIngresado = (Usuario) sesion.getAttribute("UsuarioSesion");
+        
+        modelo.put("nombreUsuario", "¡Hola, " + usuarioIngresado.getNombreDeUsuario() + "!");
+        
+//        if(usuarioIngresado.getRol().equals(Rol.ADMIN.getNombre())){
+//            return "redirect:/";
+//        }
         
         List<Noticia> noticias = noticiaServicio.ordenarNoticiasPorFechaDescendente();
         modelo.put("noticias", noticias);
@@ -49,10 +60,5 @@ public class PortalControlador {
         return "inicio.html";
 
     }
-    
-//    @GetMapping("/")
-//    public String cargarRegistroUsuario() {
-//        return "registro_usuario.html";
-//    }
     
 }

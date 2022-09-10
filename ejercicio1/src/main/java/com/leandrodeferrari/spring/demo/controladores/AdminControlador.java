@@ -2,14 +2,15 @@ package com.leandrodeferrari.spring.demo.controladores;
 
 import com.leandrodeferrari.spring.demo.entidades.Noticia;
 import com.leandrodeferrari.spring.demo.excepciones.NoticiaExcepcion;
-import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
+//import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
-import com.leandrodeferrari.spring.demo.servicios.UsuarioServicio;
+//import com.leandrodeferrari.spring.demo.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+//import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/admin")
@@ -18,13 +19,8 @@ public class AdminControlador {
     @Autowired
     private NoticiaServicio noticiaServicio;
     
-    @Autowired
-    private UsuarioServicio usuarioServicio;
-
-//    @GetMapping("/")
-//    public String cargarRegistroUsuario() {
-//        return "registro_usuario.html";
-//    }
+//    @Autowired
+//    private UsuarioServicio usuarioServicio;
 
     @GetMapping("/acceso")
     public String cargarPaginaDeAdmin(ModelMap modelo) {
@@ -40,30 +36,9 @@ public class AdminControlador {
     public String cargaPaginaDeCrearNoticia() {
         return "registro_noticia.html";
     }
-//
-//    @PostMapping("/crear-usuario")
-//    public String cargarUsuario(@RequestParam("nombreDeUsuario") String nombreDeUsuario,@RequestParam("email") String email,@RequestParam("contrasenia1") String contrasenia1,@RequestParam("contrasenia2") String contrasenia2, ModelMap modelo){
-//        
-//        try {
-//            
-//            usuarioServicio.crearUsuario(nombreDeUsuario, contrasenia1, contrasenia2, email);
-//            
-//            modelo.put("exito", "Te has registrado correctamente");
-//            return "registro_usuario.html";
-//            
-//        } catch (UsuarioExcepcion ex) {
-//            
-//            modelo.put("error", ex.getMessage());
-//            modelo.put("nombreDeUsuario", nombreDeUsuario);
-//            modelo.put("email", email);
-//            return "registro_usuario.html";
-//            
-//        }
-//        
-//    }
     
     @PostMapping("/guardar-noticia")
-    public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
+        public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
 
         try {
 
@@ -85,6 +60,7 @@ public class AdminControlador {
 
     }
 
+    //PutMapping
     @PostMapping("/modificar-noticia")
     public String moodificarNoticia(@RequestParam("id") String id, @RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
 
@@ -114,6 +90,7 @@ public class AdminControlador {
 
     }
 
+    //PutMapping
     @PostMapping("/eliminar-noticia")
     public String eliminarNoticia(@RequestParam("id") String id, ModelMap modelo) {
 
