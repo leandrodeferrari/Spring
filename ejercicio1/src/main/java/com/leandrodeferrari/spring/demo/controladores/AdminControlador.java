@@ -5,12 +5,20 @@ import com.leandrodeferrari.spring.demo.excepciones.NoticiaExcepcion;
 //import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Calendar;
 //import com.leandrodeferrari.spring.demo.servicios.UsuarioServicio;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-//import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/admin")
@@ -18,10 +26,9 @@ public class AdminControlador {
 
     @Autowired
     private NoticiaServicio noticiaServicio;
-    
+
 //    @Autowired
 //    private UsuarioServicio usuarioServicio;
-
     @GetMapping("/acceso")
     public String cargarPaginaDeAdmin(ModelMap modelo) {
 
@@ -36,13 +43,29 @@ public class AdminControlador {
     public String cargaPaginaDeCrearNoticia() {
         return "registro_noticia.html";
     }
-    
+
     @PostMapping("/guardar-noticia")
-        public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
+    public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") MultipartFile foto, ModelMap modelo) {
 
         try {
 
-            noticiaServicio.crearNoticia(titulo, cuerpo, foto);
+            String ruta = "C://noticias//imagenesNoticias";
+            int indice = foto.getOriginalFilename().indexOf(".");
+            String extension = "";
+            extension = "." + foto.getOriginalFilename().substring(indice + 1);
+            String nombreFoto = Calendar.getInstance().getTimeInMillis() + extension;
+//            Path rutaAbsoluta = id != 0 ? Paths.get(ruta + "//"+foto) :
+//                    Paths.get(ruta+"//"+nombreFoto);
+            Path rutaAbsoluta = Paths.get(ruta + "//" + nombreFoto);
+            try {
+//                Files.write(rutaAbsoluta,foto.getBytes());
+                File archivo = new File(rutaAbsoluta.toString());
+                archivo.createNewFile();
+                foto.transferTo(archivo);
+            } catch (IOException ex) {
+                modelo.put("error", "Sucedió un error con su foto");
+            }
+            noticiaServicio.crearNoticia(titulo, cuerpo, nombreFoto);
 
             modelo.put("exito", "La noticia se ha creado correctamente");
             return "registro_noticia.html";
@@ -53,7 +76,7 @@ public class AdminControlador {
             modelo.put("titulo", titulo);
             modelo.put("cuerpo", cuerpo);
             modelo.put("foto", foto);
-            
+
             return "registro_noticia.html";
 
         }
@@ -111,7 +134,7 @@ public class AdminControlador {
         } catch (NoticiaExcepcion ex) {
 
             modelo.put("errorEliminar", "La noticia no pudo borrarse. Causa: " + ex.getMessage());
-            
+
             List<Noticia> noticias = noticiaServicio.listarNoticiasDadasDeAlta();
             modelo.addAttribute("noticias", noticias);
             return "acceso_admin.html";

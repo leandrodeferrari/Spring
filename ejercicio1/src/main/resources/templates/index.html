@@ -69,7 +69,7 @@
                 <article class="col-lg-4 mb-3" th:each="noticia : ${noticias}">
                     <div class="card">
                         <img
-                            src="imagenes/sevdaliza-foto.jpg"
+                            th:src="@{C://noticias/imagenesNoticias/__${noticia.foto}__}"
                             class="card-img-top"
                             alt="..."
                             />

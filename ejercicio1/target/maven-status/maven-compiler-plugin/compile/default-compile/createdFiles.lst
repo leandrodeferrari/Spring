@@ -3,6 +3,7 @@ com\leandrodeferrari\spring\demo\controladores\NoticiaControlador.class
 com\leandrodeferrari\spring\demo\excepciones\NoticiaExcepcion.class
 com\leandrodeferrari\spring\demo\controladores\ErrorControlador.class
 com\leandrodeferrari\spring\demo\excepciones\UsuarioExcepcion.class
+com\leandrodeferrari\spring\demo\FotoConfiguracion.class
 com\leandrodeferrari\spring\demo\controladores\AdminControlador.class
 com\leandrodeferrari\spring\demo\SeguridadWeb.class
 com\leandrodeferrari\spring\demo\DemoApplication.class

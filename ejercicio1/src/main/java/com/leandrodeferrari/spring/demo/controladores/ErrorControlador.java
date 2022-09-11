@@ -23,27 +23,27 @@ public class ErrorControlador implements ErrorController {
 
             case 400:
 
-                mensajeError = "El recurso solicitado no existe.";
+                mensajeError = "El recurso solicitado no existe";
                 break;
 
             case 403:
 
-                mensajeError = "No tiene permisos para acceder al recurso.";
+                mensajeError = "No tiene permisos para acceder al recurso";
                 break;
 
             case 401:
                 
-                mensajeError = "No se encuentra autorizado.";
+                mensajeError = "No se encuentra autorizado";
                 break;
 
             case 404:
 
-                mensajeError = "El recurso solicitado no fue encontrado.";
+                mensajeError = "El recurso solicitado no fue encontrado";
                 break;
 
             case 500:
 
-                mensajeError = "Ocurrió un error interno.";
+                mensajeError = "Ocurrió un error interno";
                 break;
 
             default:
