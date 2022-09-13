@@ -11,8 +11,10 @@ public class FotoConfiguracion implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registro){
         
         WebMvcConfigurer.super.addResourceHandlers(registro);
-        registro.addResourceHandler("/imagenesNoticias/**").addResourceLocations("file:/C:/noticias/imagenesNoticias/");
         
+        registro.addResourceHandler("/imagenesNoticias/**").
+                addResourceLocations("C:/Users/pc/Documents/ApacheNetBeansProjects/Spring/ejercicio1/src/main/resources/static/imagenesNoticias/");
+         registro.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
     
 }

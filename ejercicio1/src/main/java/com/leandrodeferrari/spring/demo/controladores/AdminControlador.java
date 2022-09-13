@@ -5,7 +5,7 @@ import com.leandrodeferrari.spring.demo.excepciones.NoticiaExcepcion;
 //import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,8 +13,6 @@ import java.nio.file.Paths;
 import java.util.Calendar;
 //import com.leandrodeferrari.spring.demo.servicios.UsuarioServicio;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -49,20 +47,21 @@ public class AdminControlador {
 
         try {
 
-            String ruta = "C://noticias//imagenesNoticias";
+            String ruta = "C:\\Users\\pc\\Documents\\ApacheNetBeansProjects\\Spring\\ejercicio1\\src\\main\\resources\\static\\imagenesNoticias";
             int indice = foto.getOriginalFilename().indexOf(".");
             String extension = "";
             extension = "." + foto.getOriginalFilename().substring(indice + 1);
             String nombreFoto = Calendar.getInstance().getTimeInMillis() + extension;
 //            Path rutaAbsoluta = id != 0 ? Paths.get(ruta + "//"+foto) :
 //                    Paths.get(ruta+"//"+nombreFoto);
-            Path rutaAbsoluta = Paths.get(ruta + "//" + nombreFoto);
+            Path rutaAbsoluta = Paths.get(ruta + "/" + nombreFoto);
             try {
-//                Files.write(rutaAbsoluta,foto.getBytes());
-                File archivo = new File(rutaAbsoluta.toString());
-                archivo.createNewFile();
-                foto.transferTo(archivo);
+                Files.write(rutaAbsoluta,foto.getBytes());
+//                File archivo = new File(rutaAbsoluta.toString());
+//                archivo.createNewFile();
+//                foto.transferTo(archivo);
             } catch (IOException ex) {
+                System.out.println(ex.getMessage());
                 modelo.put("error", "Sucedió un error con su foto");
             }
             noticiaServicio.crearNoticia(titulo, cuerpo, nombreFoto);
