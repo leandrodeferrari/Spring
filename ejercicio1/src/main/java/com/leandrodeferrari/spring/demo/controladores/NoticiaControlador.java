@@ -22,12 +22,15 @@ public class NoticiaControlador {
     
     @GetMapping("/{id}")
     public String mostrarNoticia(@PathVariable("id") String id, ModelMap modelo){
-        // Falta mostrar foto en el html
+        
         try {
+            
             Noticia noticia = noticiaServicio.encontrarNoticia(id);
             modelo.addAttribute("titulo", noticia.getTitulo());
             modelo.addAttribute("cuerpo", noticia.getCuerpo());
             modelo.put("fechaDeSubida", noticia.getFechaDeSubida());
+            modelo.put("id", noticia.getId());
+            
         } catch (NoticiaExcepcion ex) {
             modelo.put("errorCargarNoticia", "Error al cargar la noticia");
         }

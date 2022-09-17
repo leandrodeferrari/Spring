@@ -17,8 +17,9 @@ public class Noticia implements Serializable {
     private String id;
     private String titulo;
     private String cuerpo;
-    @Column(columnDefinition = "MEDIUMTEXT")
-    private String foto;
+//    @Column(columnDefinition = "MEDIUMTEXT")
+    @OneToOne
+    private Foto foto;
     @Column(name = "fecha_de_subida")
     private LocalDateTime fechaDeSubida;
     private boolean alta;

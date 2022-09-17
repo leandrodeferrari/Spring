@@ -1,13 +1,15 @@
 com\leandrodeferrari\spring\demo\entidades\Noticia.class
 com\leandrodeferrari\spring\demo\controladores\NoticiaControlador.class
+com\leandrodeferrari\spring\demo\entidades\Foto.class
 com\leandrodeferrari\spring\demo\excepciones\NoticiaExcepcion.class
 com\leandrodeferrari\spring\demo\controladores\ErrorControlador.class
+com\leandrodeferrari\spring\demo\servicios\FotoServicio.class
 com\leandrodeferrari\spring\demo\excepciones\UsuarioExcepcion.class
-com\leandrodeferrari\spring\demo\FotoConfiguracion.class
 com\leandrodeferrari\spring\demo\controladores\AdminControlador.class
 com\leandrodeferrari\spring\demo\SeguridadWeb.class
 com\leandrodeferrari\spring\demo\DemoApplication.class
 com\leandrodeferrari\spring\demo\servicios\NoticiaServicio.class
+com\leandrodeferrari\spring\demo\repositorios\FotoRepositorio.class
 com\leandrodeferrari\spring\demo\repositorios\NoticiaRepositorio.class
 com\leandrodeferrari\spring\demo\entidades\Usuario.class
 com\leandrodeferrari\spring\demo\controladores\UsuarioControlador.class
@@ -16,3 +18,4 @@ com\leandrodeferrari\spring\demo\controladores\PortalControlador.class
 com\leandrodeferrari\spring\demo\enumeraciones\Rol.class
 com\leandrodeferrari\spring\demo\ServletInitializer.class
 com\leandrodeferrari\spring\demo\servicios\UsuarioServicio.class
+com\leandrodeferrari\spring\demo\excepciones\FotoExcepcion.class

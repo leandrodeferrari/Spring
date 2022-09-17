@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-12 p-5">
                     <div class="card h-100 w-100" style="width: 18rem;">
-                        <img src="../imagenes/sevdaliza-foto.jpg" class="card-img-top" alt="...">
+                        <img th:src="@{/foto/__${id}__}" class="card-img-top img-fluid" alt="...">
                         <div class="card-body text-center">
                             <h5 class="card-title" th:text="${titulo}"></h5>
                             <p class="card-text" th:text="${cuerpo}"></p>

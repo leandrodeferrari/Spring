@@ -1,17 +1,10 @@
 package com.leandrodeferrari.spring.demo.controladores;
 
 import com.leandrodeferrari.spring.demo.entidades.Noticia;
+import com.leandrodeferrari.spring.demo.excepciones.FotoExcepcion;
 import com.leandrodeferrari.spring.demo.excepciones.NoticiaExcepcion;
-//import com.leandrodeferrari.spring.demo.excepciones.UsuarioExcepcion;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.leandrodeferrari.spring.demo.servicios.NoticiaServicio;
-//import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Calendar;
-//import com.leandrodeferrari.spring.demo.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,8 +18,6 @@ public class AdminControlador {
     @Autowired
     private NoticiaServicio noticiaServicio;
 
-//    @Autowired
-//    private UsuarioServicio usuarioServicio;
     @GetMapping("/acceso")
     public String cargarPaginaDeAdmin(ModelMap modelo) {
 
@@ -43,28 +34,11 @@ public class AdminControlador {
     }
 
     @PostMapping("/guardar-noticia")
-    public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") MultipartFile foto, ModelMap modelo) {
+    public String guardarNoticia(@RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("archivo") MultipartFile archivo, ModelMap modelo) throws FotoExcepcion {
 
         try {
 
-            String ruta = "C:\\Users\\pc\\Documents\\ApacheNetBeansProjects\\Spring\\ejercicio1\\src\\main\\resources\\static\\imagenesNoticias";
-            int indice = foto.getOriginalFilename().indexOf(".");
-            String extension = "";
-            extension = "." + foto.getOriginalFilename().substring(indice + 1);
-            String nombreFoto = Calendar.getInstance().getTimeInMillis() + extension;
-//            Path rutaAbsoluta = id != 0 ? Paths.get(ruta + "//"+foto) :
-//                    Paths.get(ruta+"//"+nombreFoto);
-            Path rutaAbsoluta = Paths.get(ruta + "/" + nombreFoto);
-            try {
-                Files.write(rutaAbsoluta,foto.getBytes());
-//                File archivo = new File(rutaAbsoluta.toString());
-//                archivo.createNewFile();
-//                foto.transferTo(archivo);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-                modelo.put("error", "Sucedió un error con su foto");
-            }
-            noticiaServicio.crearNoticia(titulo, cuerpo, nombreFoto);
+            noticiaServicio.crearNoticia(titulo, cuerpo, archivo);
 
             modelo.put("exito", "La noticia se ha creado correctamente");
             return "registro_noticia.html";
@@ -74,7 +48,7 @@ public class AdminControlador {
             modelo.put("error", ex.getMessage());
             modelo.put("titulo", titulo);
             modelo.put("cuerpo", cuerpo);
-            modelo.put("foto", foto);
+            modelo.put("archivo", archivo);
 
             return "registro_noticia.html";
 
@@ -84,11 +58,11 @@ public class AdminControlador {
 
     //PutMapping
     @PostMapping("/modificar-noticia")
-    public String moodificarNoticia(@RequestParam("id") String id, @RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("foto") String foto, ModelMap modelo) {
+    public String moodificarNoticia(@RequestParam("id") String id, @RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("archivo") MultipartFile archivo, ModelMap modelo) throws FotoExcepcion {
 
         try {
 
-            boolean esModificada = noticiaServicio.modificarNoticia(id, titulo, cuerpo, foto);
+            boolean esModificada = noticiaServicio.modificarNoticia(id, titulo, cuerpo, archivo);
 
             if (esModificada) {
                 modelo.put("exitoModificar", "La noticia se ha modificado correctamente");
