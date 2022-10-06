@@ -56,7 +56,7 @@ public class AdminControlador {
 
     }
 
-    //PutMapping
+    //PutMapping error con spring security
     @PostMapping("/modificar-noticia")
     public String moodificarNoticia(@RequestParam("id") String id, @RequestParam("titulo") String titulo, @RequestParam("cuerpo") String cuerpo, @RequestParam("archivo") MultipartFile archivo, ModelMap modelo) throws FotoExcepcion {
 
@@ -86,7 +86,7 @@ public class AdminControlador {
 
     }
 
-    //PutMapping
+    //PutMapping error con spring security
     @PostMapping("/eliminar-noticia")
     public String eliminarNoticia(@RequestParam("id") String id, ModelMap modelo) {
 
